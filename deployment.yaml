@@ -1,0 +1,31 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: cw-sphinx
+spec:
+  selector:
+    matchLabels:
+      app: cw-sphinx
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: cw-sphinx
+        tier: backend
+    spec:
+      containers:
+      - name: cw-sphinx
+        image: gcr.io/api-project-736062072361/cw-sphinx:0.1
+        ports:
+        - containerPort: 9306
+        envFrom:
+        - configMapRef:
+            name: cw-prod-py-1-config-8zte
+        volumeMounts:
+        - name: tz-config
+          mountPath: /etc/localtime
+      volumes:
+        - name: tz-config
+          hostPath:
+            path: /usr/share/zoneinfo/America/New_York
+

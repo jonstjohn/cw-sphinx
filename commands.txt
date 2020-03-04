@@ -1,0 +1,15 @@
+Build: docker build -t cw-sphinx:0.1 .
+Run: 
+docker container run -d -p 9306:9306 --name cw-sphinx \
+-e "CW_DB_HOST=host.docker.internal" \
+-e "CW_DB_NAME=cw" \
+-e "CW_DB_PASSWORD=test1234" \
+-e "CW_DB_USER=sphinx" \
+gcr.io/api-project-736062072361/cw-sphinx:0.1
+
+Connect: mysql -u sphinx -h 127.0.0.1 -P9306 -p
+
+Tag:
+docker tag gcr.io/api-project-736062072361/cw-sphinx:0.1 gcr.io/api-project-736062072361/cw-sphinx
+
+

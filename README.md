@@ -1,1 +1,1 @@
-# cw-sphinx
+# cw-sphinx-legacy
