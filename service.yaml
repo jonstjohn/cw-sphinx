@@ -9,5 +9,5 @@ spec:
   ports:
   - protocol: TCP
     port: 9306
-    targetPort: http
+    targetPort: 9306
 
